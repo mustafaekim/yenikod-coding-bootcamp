@@ -1,0 +1,3 @@
+// 01 is also a number literal. It represents the number value: 1
+// So these number literals represent the same value: 1 and 01 and 001 and 0001 ....
+01
