@@ -10,16 +10,16 @@ console.log(hi());
  }
  */
 var a
-var a
 
-a = 0
- for(; a<10; a++){
-     console.log(a);
- }
 
-a = 0
- for(; a<10; a++){
-     console.log(a);
- }
+a = 0;
+for (; a < 10; a++) {
+    console.log(a);
+}
+
+a = 0;
+for (; a < 10; a++) {
+    console.log(a);
+}
 
 
