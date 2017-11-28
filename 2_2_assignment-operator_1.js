@@ -1,3 +1,9 @@
+// In JavaScript, operators performs action on variables and values
+
+// Equal sign (=) is an "assignment operator".
+// Assignment operator is not about equality but about "assigning a value to a variable".
+// Hence, "x = 1" is not read "x is equal to 1", but "value of 1 is assigned into the variable called x"
+
 // Once a variable is declared, we can assign a value "into the variable"
 // To assign a value into a variable, we use the "assignment (=) operator"
 // Assignment operator
