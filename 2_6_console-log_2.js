@@ -3,13 +3,10 @@
 // Learn also that, a variable represents the value inside the variable
 // Hence, instead of writing a string literal, you can also use a variable that holds the same string
 
-
-// Example 1:
 var myName = "Mustafa";
 console.log(myName);
 
 /*
-    Example 2:
     The code above produces the same output as the code below:
     console.log("Mustafa")
 

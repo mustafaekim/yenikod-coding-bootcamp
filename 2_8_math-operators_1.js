@@ -37,17 +37,6 @@ console.log(x); // prints "Mustafa Ekim"
     /       division
     %       remainder
 
-    Equality operators
-    ==      loose equals
-    ===     strict equals
-    !=      loose not equals
-    !==     strict not equals
-
-
-    Logical selection
-    &&      and
-    ||      or
-
 */
 
 x = 10 / 2 * 3 + 4 - 8;
