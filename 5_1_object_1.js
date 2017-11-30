@@ -32,3 +32,5 @@ console.log(typeof person.age);
 var old = "age";
 console.log(person[old]);
 console.log(person["a" + "g" + "e"]);
+
+console.log(person.gender) // -> undefined, not ReferenceError!

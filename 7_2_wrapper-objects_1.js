@@ -7,6 +7,8 @@
     -	boolean value is wrapped by Boolean object
     -	function value (first must be placed inside parenthesis) is wrapped by Function object
     -	Once the value is wrapped by an object, as a result, it can have properties. (and have acccess to the built-in properties)
+
+    * null and undefined have no object wrapper form, hence trying to access it as if they are an object, throws Type Error
 */
 
 console.log("Mustafa".length);

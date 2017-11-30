@@ -4,8 +4,6 @@ function analyse(obj){
     }
 }
 
-
-
 analyse({
     name: "Mustafa",
     age: 35,
