@@ -9,6 +9,9 @@
     -	Once the value is wrapped by an object, as a result, it can have properties. (and have acccess to the built-in properties)
 
     * null and undefined have no object wrapper form, hence trying to access it as if they are an object, throws Type Error
+
+    Notes:
+        - I omit the new operator, because we have not yet seen. What really happens is new Number(), new String(), new Boolean() ...
 */
 
 console.log("Mustafa".length);

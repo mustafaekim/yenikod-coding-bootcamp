@@ -1,7 +1,7 @@
 /*
     Object.keys returns only enumerable property keys (ignores prototype chain)
-    getOwnPropertyNames: returns all property keys (ignores prototype chain)
-    propertyIsEnumerable
+    Object.getOwnPropertyNames: returns all property keys (ignores prototype chain)
+    Object.prototype.propertyIsEnumerable
 */
 
 var user = {

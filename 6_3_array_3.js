@@ -25,7 +25,7 @@ console.log(b);
 console.log(b("ozan", "meray"));
 console.log(a.length);
 
-// We cretae a loop that iterates a.length times (hence 5 times)
+// We create a loop that iterates a.length times (hence 5 times)
 // In each iteration we reach a different element of the array and we write the element's value into the console
 for (var c = 0; c < a.length; c++) {
     console.log(a[c]);

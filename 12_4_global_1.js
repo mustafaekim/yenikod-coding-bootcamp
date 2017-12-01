@@ -1,3 +1,7 @@
+// Before the code codes, an environment is set
+// This environment have some functions, variables and objects already declared
+// That's how we can use console object
+
 console.log(__dirname);
 console.log(__filename);
 

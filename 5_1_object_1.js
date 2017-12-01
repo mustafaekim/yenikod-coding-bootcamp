@@ -1,36 +1,18 @@
-// object: 
-//     compound value
-//     properties: key -> value (any propery expression)
+// a is declared to be a variable
+// an object literal is assigned into the variable a
+// the object has a property ( log is the key, 1 is the value of the log property) 
 
-// accessing object properties:        
-//     person.name (dot notation)
-//     person["name"] (bracket notation)
-
-//     person.age
-//     person["age"]
-
-//     dot notation:
-//         requires a valid identifier (varible names)
-
-//     bracket notation: 
-//         any expression is ok
-//         you can pass a variable
-
-var person = {
-    counter: 0,
-    name: "Mustafa",
-    age: 35
+var a = {
+    log: 1
 }
 
-console.log(person.name);
-console.log(typeof person.name);
-console.log(typeof person["name"])
+// dot operator (object property accessor operator) returns the value of log property inside/of the object a
+// this returned value is passed as a parameter to the function 
+console.log( a.log);
 
-console.log(person.age);
-console.log(typeof person.age);
+// console is a built-in variable which holds (is assigned to) a value of type object
+// object = bracket'ler  ve içi.
 
-var old = "age";
-console.log(person[old]);
-console.log(person["a" + "g" + "e"]);
 
-console.log(person.gender) // -> undefined, not ReferenceError!
+// [] operator returns the value of the object's property whose name is given as a string  inside the []'ler
+console.log(a["log"]);

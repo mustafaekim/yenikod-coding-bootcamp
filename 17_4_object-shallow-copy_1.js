@@ -1,6 +1,6 @@
 // Object.assign function shallow copy an object
 // Shallow copy, iterates enumerable owned keys and copy via assignment (hence objects are passed as reference)
-// hasOwnProperty(strPropertyName)
+// Object.prototype.hasOwnProperty()
 
 "use strict"
 

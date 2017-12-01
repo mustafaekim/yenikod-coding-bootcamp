@@ -1,10 +1,11 @@
 /*
     Object literal sythax
+    Object constructor
     delete property
-    hasOwnProperty (function comes through inheritance of Object.prototype)
+    Object.prototype.hasOwnProperty (function comes through inheritance of Object.prototype)
     in operator (checkes prototype chain)
     Object.keys returns only enumerable property keys (ignores prototype chain)
-    getOwnPropertyNames: returns all property keys (ignores prototype chain)
+    Object.getOwnPropertyNames: returns all property keys (ignores prototype chain)
 */
 
 var user1 = {
@@ -18,7 +19,6 @@ var user1 = {
 var user2 = new Object();
 user2.name = "Mustafa"
 user2.age = 35;
-
 
 // delete property
 delete user1.age;
