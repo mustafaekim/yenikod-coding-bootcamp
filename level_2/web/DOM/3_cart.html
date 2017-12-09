@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+
+
+<html>
+
+<head>
+
+    <style>
+        .product-item {
+            padding: 15px;
+            background: grey;
+            margin: 5px 0px;
+            font-size: 26px;
+            color: white;
+        }
+    </style>
+
+</head>
+
+<body>
+    <h1>Products</h1>
+    <div id="products-container"></div>
+
+</body>
+
+
+
+<script>
+
+    "use strict"
+
+    var products = [
+        { id: 1, name: "Banana", price: 12 }
+        , { id: 2, name: "Apple", price: 4 }
+        , { id: 3, name: "Orange", price: 5 }
+    ];
+
+    for (var i = 0; i < products.length; i++) {
+        var newProductElement = document.createElement("div");
+        newProductElement.classList.add("product-item");
+        newProductElement.setAttribute("data-product-id", products[i].id)
+        newProductElement.innerHTML = products[i].name + ", $" + products[i].price;
+
+        newProductElement.addEventListener("click", function (e) {
+            console.log(e.target, "clicked", e.target.getAttribute("data-product-id"));
+        })
+
+        document.getElementById("products-container").appendChild(newProductElement);
+    }
+
+</script>
+
+</html>

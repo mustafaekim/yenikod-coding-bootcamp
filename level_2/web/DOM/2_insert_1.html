@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+
+
+<html>
+
+    <head>
+
+    </head>
+
+    <body>
+        <div>Div 1</div>
+        <div>Div 2</div>
+        <div>Div 3</div>
+        <div>Div 4</div>
+    </body>
+
+
+
+    <script>
+        document.body.children[0].innerHTML ="<h1>Hello! That's my first interactive Header</h1>";
+        document.body.children[1].outerHTML = "<h2>That's my first H2, replaced with Div2";
+
+
+        document.body.children[2].insertAdjacentHTML("beforebegin", "<span>That span is inserted 'beforebegin'</span>")
+
+        // I've added a new element just before div3, hence now div3 is on index 3! // static & live
+        document.body.children[3].insertAdjacentHTML("afterbegin", "<span>That span is inserted 'afterbegin'</span>") 
+        document.body.children[3].insertAdjacentHTML("afterend", "<span>That span is inserted 'afterend'</span>") 
+    </script>
+</html>

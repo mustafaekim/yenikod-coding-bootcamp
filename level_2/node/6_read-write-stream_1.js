@@ -22,8 +22,8 @@ const FILE_TO_BE_WRITTEN = "0_data_text-stream-copy";
 
 var myReadStream = fs.createReadStream(__dirname + "/" + FILE_TO_BE_STREAMED,
     {
-        start: 0, end: 999, // the bytes range. If encoding is used for non-binary, that's the char interals. Here we get first 1000 characters
-        highWaterMark: 100 // size of chunk in bytes or length of string if encoding is used fon non-binary
+        start: 0, end: 999, // the bytes range. If encoding is set to non-binary, that's the chars interval. Here we get first 1000 characters
+        highWaterMark: 100 // size of chunk in bytes or length of string if encoding is set to non non-binary
         , encoding: "utf8"
     }
 )

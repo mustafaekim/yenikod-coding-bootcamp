@@ -59,5 +59,12 @@ console.log("(10)", obj2.hasOwnProperty("old")); // false! Oh, defineProperty!
 console.log("(11)", obj2.hasOwnProperty("model")); // false
 obj2.model++;
 console.log("(12)", obj2.hasOwnProperty("model")); // true! Re-assignment as value!
-console.log("(10)", obj2.model); // 2002
+console.log("(13)", obj2.model); // 2002
 
+/* 7 */
+// We have seen that we cannot set myObj.foo because there is
+// another foo on the prototype chain and it is not writable.
+// We can still create myObj.foo so that it will "shadow" the foo on prototype
+// try { myObj.foo = "Buum"; }
+// catch (e) { Object.defineProperty(myObj, "foo", { value: "Buum" }); }
+// console.log("(14)", myObj.foo);

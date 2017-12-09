@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+
+<!--
+    DOM (document object model) is a LIVE model that represents the document's structure
+    In JavaScript sandbox environment, that model is given as a global variable: document
+        document.documentElement: is a property whose value is an object that represents the HTML tag
+        document.head is a property whose value is an object that represent the HEAD tag
+        document.body is a property whose value is an object that represent the BODY tag
+
+    DOM has a tree like structure that represents the HTML file structure
+        Each node may refer to other nodes, children, which may have their own children. (single root, nested/recursive, without cycles)
+        document.documentElement is the ROOT element.
+        There are several types of nodes. Each node has a nodeType property whose value represent the type of the node
+    
+    Traverse the tree through nodes:
+        parentNode, childNodes, firstChild, lastChild, previousSibling, nextSibling
+
+    Tranverse the tree through (not 100% compatible)
+        children, childElementCount, firstElementChild, lastElementChild, nextElementSibling, previousElementSibling
+
+    Select an element:
+        getElementsByTagName("p")[0]
+        getElementById("main")
+        getElementByClassName("hot")
+
+    Use Query Selector
+        document.querySelector("#main")
+        document.querySelector("#main > p[target]")
+        querySelectorAll()
+
+
+    Attributes (are not part of DOM tree, they are properties of element node objects)
+        - you can access using the dot notation on the element object
+        - some attribute names are restricted to be accessed through the dot notation (which are reserved keyworkd for JS: class, for)
+            - getAttribute(name), setAttribute(name, value), hasAttribute(name), removeAttribute(name)
+            - node.attributes (readonly)
+
+        class attibutes: can take multiple class names, hence it can be managed through a API
+            node.classList.add(class), node.classList.remove(class), node.classList.toggle(class), node.classList.contains(class)
+    
+    Change the document:
+
+        node.innerHTML (read/write)
+        node.outerHTML
+        node.insertAdjacentHTML (beforebegin, afterbegin, beforeend, afterend)
+
+        removeChild
+        appendChild
+        insertBefore
+        replaceChild
+        createElement
+        createTextNode
+
+
+    Each node object 
+-->
+<html>
+
+<head>
+
+
+</head>
+
+<body>
+    <p class="cold"  >Hi guys, that's my first paragraph</p>
+    <div>That's my first div</div>
+    <div>
+        I have some texts without element, which is a simple text node.
+        <p>Then, I have a paragraph inside my first div</p>
+
+    </div>
+
+
+
+
+    <script>
+        var myNewTextNode = document.createElement("p");
+        myNewTextNode.appendChild(document.createTextNode("Hello JS!"));
+        document.body.lastElementChild.before(myNewTextNode);
+    </script>
+</body>
+
+</html>

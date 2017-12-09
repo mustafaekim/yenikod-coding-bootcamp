@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>Yenikod Bootcamp - DOM</title>
+</head>
+<body>
+    <!--
+        HTML documents get parsed by the browser and converted into a tree structure of "node objects" representing a live document.
+        That representation is called DOM (document object model)
+        DOM is to provide a programmatic interface for scripting the live document using JavaScript.
+
+        JavaScripts run in a sandbox environment that the browser provide.
+        In this environment is injected the window object
+            window is the main JavaScript object root (aka. the global object in a browser, also can be treated as the root of the document object model)
+            All the global vari­ables are defined on the win­dow object. (hence properties of window object are the global variables)
+                alert(), confirm() are meth­ods defined on the window object. alert() is sim­i­lar to window.alert()
+                prop­er­ties like document, location are prop­er­ties of the window object, and hence accessible globally.
+
+            document object is the direct child of the window object. It is aka Doc­u­ment Object Model (DOM).
+            Like window's other properties, it is globally accesible. You can access it via window.document or document.
+
+
+        Prototype Chain
+            EventTarget is an interface implemented by objects that can receive events and may have listeners for them.
+                EventTarget.addEventListener()
+                EventTarget.removeEventListener()
+                EventTarget.dispatchEvent()
+
+            EventTarget > Node >
+                                    Element > HTMLElement > HTML*Element
+                                    Attr
+                                    CharacterData > Text
+                                    Document > HTMLDocument
+                                    DocumentFragment
+
+
+
+        DOM is a tree of "Node Objects":
+            - Node Object > Object
+            - There are several types of Node objects:
+                -nodeType: 
+                    DOCUMENT_NODE (9)
+                    ELEMENT_NODE (1)
+                    TEXT_NODE (3)
+                    DOCUMENT_FRAGMENT_NODE (11)
+                    DOCUMENT_TYPE_NODE (10)
+
+
+        document.documentElement
+        document.body
+        document.head
+        parentNode, childNodes, firstChild, lastChild, previousSibling, nextSibling
+        -->
+        
+        Welcome to Yenikod Bootcamp!
+        <h1>Course: DOM</h1>
+
+
+        <script>
+            // Let's examine document object
+            console.log("document is a node constructed by HTMLDocument", document.__proto__ == HTMLDocument.prototype, "Node Type:", document.nodeType);
+
+
+            // Let's examine the child nodes of document
+            var documentTypeNode = document.childNodes[0];
+            var htmlElement = document.childNodes[1]; // also accessible via document.documentElement
+            console.log("childNodes of document")
+            console.log("(1) First Child is a Node object constructed by DocumentType()", documentTypeNode.__proto__ == DocumentType.prototype, "Node Type:", documentTypeNode.nodeType);
+            console.log("(2) Second Child is a Node object constructed by HTMLHtmlElement()", htmlElement.__proto__ == HTMLHtmlElement.prototype, "Node Type:", htmlElement.nodeType);
+
+            // Let's examine child nodes of htmlElement
+            var headElement = document.head; // shortcut
+            var bodyElement = document.body; // shortcut
+            console.log("childNodes of html element (aka. document.documentElement)")
+            console.log("(1) Head Element is a Node object constructed by HTMLHeadElement()", headElement.__proto__ == HTMLHeadElement.prototype, "Node Type:", headElement.nodeType);
+            console.log("(2) Body Element is a Node object constructed by HTMLBodyElement()", bodyElement.__proto__ == HTMLBodyElement.prototype, "Node Type:", bodyElement.nodeType);
+
+            // Let's examine the child nodes of document.body
+            var firstChild = document.body.firstChild;
+            var secondChild = firstChild.nextSibling;
+            var thirdChild = secondChild.nextSibling;
+            var forthChild = thirdChild.nextSibling;
+            var fifthChild = forthChild.nextSibling;
+            var sixthChild = fifthChild.nextSibling;
+
+            console.log("childNodes of document.body")
+            console.log("(1) First Child is a Node object constructed by Text()", firstChild.__proto__ == Text.prototype, "Node Type:", firstChild.nodeType);
+            console.log("(2) Second Child is a Node object constructed by Comment()", secondChild.__proto__ == Comment.prototype, "Node Type:", secondChild.nodeType);
+            console.log("(3) Third Child is a Node object constructed by Text()", thirdChild.__proto__ == Text.prototype, "Node Type:", thirdChild.nodeType);
+            console.log("(4) Forth Child is a Node object constructed by HTMLHeadingElement()", forthChild.__proto__ == HTMLHeadingElement.prototype, "Node Type:", forthChild.nodeType);
+            console.log("(5) Fifth Child is a Node object constructed by Text()", fifthChild.__proto__ == Text.prototype, "Node Type:", fifthChild.nodeType);
+            console.log("(6) Sixth Child is a Node object constructed by HTMLScriptElement()", sixthChild.__proto__ == HTMLScriptElement.prototype, "Node Type:", sixthChild.nodeType);
+
+            window.onload = function(){
+                // Seventh element is next to this script element, hence I can capture it only once it is loaded.
+                var seventhChild = sixthChild.nextSibling;
+                console.log("(7) Seventh Child is a Node object constructed by Text()", seventhChild.__proto__ == Text.prototype, "Node Type:", seventhChild.nodeType);
+            }
+
+            // All nodes are instanceof Node
+            console.log("All are instance of Node", 
+                documentTypeNode instanceof Node
+                , htmlElement instanceof Node
+                , headElement instanceof Node
+                , bodyElement instanceof Node
+                , firstChild instanceof Node
+                , secondChild instanceof Node
+                , thirdChild instanceof Node
+                , forthChild instanceof Node
+                , fifthChild instanceof Node
+                , sixthChild instanceof Node
+            )
+        </script>
+</body>
+
+
+
+</html>
