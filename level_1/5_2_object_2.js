@@ -34,3 +34,16 @@ console.log(person[old]);
 console.log(person["a" + "g" + "e"]);
 
 console.log(person.gender) // -> undefined, not ReferenceError!
+
+
+/* */
+
+var us={
+    name1: "Mustafa",
+    name2: "Ahmet",
+    name3: "Mehmet"
+}
+
+for(var  i = 0; i<3; i++){
+    console.log(us["name"+(1+i)])
+}

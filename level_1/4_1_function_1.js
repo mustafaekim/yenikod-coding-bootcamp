@@ -32,3 +32,8 @@ console.log(typeof hi);
 
 // functions that does not have a return statement, returns undefined by default
 // console.log(hi());
+
+function hi(){
+    return 1;
+    console.log("hop")
+}

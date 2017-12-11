@@ -32,4 +32,5 @@ a.firstName = "Mustafa";
 console.log(a.length); // -> 3
 
 a["4"] = "purple"; // "4" is coerced into number value 4
-console.log(a.length); // -> 4
+console.log(a.length); // -> 5!
+console.log(a[3]) // -> undefined

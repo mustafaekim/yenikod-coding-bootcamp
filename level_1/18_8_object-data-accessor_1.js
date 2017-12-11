@@ -62,9 +62,9 @@ console.log("(12)", obj2.hasOwnProperty("model")); // true! Re-assignment as val
 console.log("(13)", obj2.model); // 2002
 
 /* 7 */
-// We have seen that we cannot set myObj.foo because there is
-// another foo on the prototype chain and it is not writable.
-// We can still create myObj.foo so that it will "shadow" the foo on prototype
-// try { myObj.foo = "Buum"; }
-// catch (e) { Object.defineProperty(myObj, "foo", { value: "Buum" }); }
-// console.log("(14)", myObj.foo);
+// We have seen that we cannot set obj2.foo because there is
+// another foo on the prototype chain (myObj.foo) and it is not writable.
+// We can still create obj2.foo so that it will "shadow" the foo on prototype
+try { obj2.foo = "Buum"; }
+catch (e) { Object.defineProperty(obj2, "foo", { value: "Buum" }); }
+console.log("(14)", obj2.foo);

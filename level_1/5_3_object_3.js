@@ -18,3 +18,18 @@ var c = person.increment();
 console.log(c);
 console.log(person.counter);
 
+
+/* 
+ object vs block
+ {} is block whet it is placed at the beginning of a statement
+
+ if takes a block. There are 2 statements. First is conditional, second is block
+*/ 
+{
+    // this is a block
+    console.log("hi block");
+}
+
+var zoo = {
+    name: "I am a property of an object"
+}

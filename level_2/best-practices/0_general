@@ -1,0 +1,10 @@
+* Use semicolons for ending statements
+* Never modify the arguments object
+* Don't modify __proto__, use Object.create()
+* Store methods on prototypes, store mutable-per-instance state on instance objects
+* Use closure to store private data
+
+- SCOPE
+    * Avoid declaring global variables.
+    * Declare variables as locally as possible.
+    * Use IIFE to create local scope.

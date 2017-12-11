@@ -29,4 +29,4 @@ console.log(typeof a);
 
 console.log(typeof 5<6); //false
 console.log(typeof 5==6); //false
-console.log(typeof (5+6)); //true?
+console.log(typeof (5+6)); //number

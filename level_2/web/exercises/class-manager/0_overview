@@ -1,0 +1,71 @@
+Funtamentals of a good software lies in not programming but in good design
+
+Before starting to write any software, you must first think about the domain, the initial and the future requirements. 
+You should try to figure out how those fit together. If there is confusion, you should first clarify the domain.
+
+You must choose the right words that represent the domain and use them consistently. Provide a definion, if it clarifies the concept it presents.
+
+INITIAL REQUIREMENTS
+    I am a TEACHER.
+    I teach on several different SUBJECTs.
+    Sometimes, 
+        * I give a one-time LESSON
+            - which is mostly free for PARTICIPANTs, but must not be always the case.
+            - PARTICIPANTs must not REGISTER to ATTEND the LESSON
+        * I open a CLASS to give a series of LESSONs on a SUBJECT, to a group of LEARNER.
+            - Each CLASS will have a different NAME.
+            - STUDENT is the one who REGISTERs for the CLASS, to be able to ATTEND the CLASS.
+            - A CLASS has a FEE for REGISTRATION.
+            - Once a STUDENT REGISTERs for a CLASS, its BALANCE will be credited.
+            - Once a STUDENT makes a PAYMENT, its BALANCE will be debited.
+            - LESSONs happen on different DATEs, start at a TIME and may take different number of MINUTEs
+            - A STUDENT may partially ATTEND a LESSON, meaning that he/she does not attend for the whole LESSON but misses a few MINUTEs
+            - LESSON will have different TYPEs: SUBJECT EXPRESSION, SUPPORT, PRIVATE. PRIVATE LESSONs may require additional FEE to ATTEND.
+    
+    I want to keep track of my CLASSes, ATTENDANCEs and PAYMENTs.
+        * I want to be able to 
+            - create a new STUDENT
+            - create a new CLASS
+            - register STUDENTs into a CLASS
+            - create a new LESSON for a CLASS
+            - create ATTENDANCEs of STUDENTs for each LESSON
+            - create a PAYMENT when I receive a PAYMENT from a STUDENT
+        * I want the program to provide the information about
+            - What are the lessons that occured in the last month/quarter/year?
+            - Who are the students of a specific class?
+            - How many lessons/hours took place for a class?
+            - How long does each student attended for a class, how much he/she missed in total?
+            - Who owns me, how much?
+            - How much have I earned this month/year?
+            - How much have I collected this month/year?
+
+
+OBJECT DESIGN
+    * Next you have to identify the type of objects, their properties/methods and the relationship between these objects, so that the requiremnts are satisfied.
+    * While designing, I observe that I should rather use the word USER instead of STUDENT, because I observe no property that makes it called a STUDENT.
+    * If I think that an object should be able to live alone / independently, I design it as a FIRST CLASS Otherwise, I place it inside another object.
+    * I try to design so that all data should not placed on multiple objects. For instance, a user's name, is only at User object, and nowhere else.
+        That makes our life easier when updating the properties of an object and prevent inconsistency issues.
+    * IDs should be uniq within the series of objects of same kind. They are for making some functionalities (searching, updating ..) possible or easier.
+        For example, a specific userId, should always represent the same USER object. Multiple USER objects should not share the same userId.
+
+    USER: userId, firstname, lastname, email, mobile
+    BALANCE: balanceId, userId, current, TRANSACTIONs
+        TRANSACTION: transactionId, dateOccured, userId, amount, description, type (On of DEBIT or CREDIT), REASON
+            REASON: type (One of PAYMENT, CLASS_REGISTRATION ..), DETAIL
+                DETAIL: *
+    CLASS: classId, name, subject, price
+    LESSON: lessonId, classId, dateStarted, dateEnded, type
+    ATTENDANCE: userId, classId, lessonId, missingMinutes
+
+    * Now be sure that the object design really satisfies all the requirements. Play all the scenarios in your mind. Try to imagine edge cases and find out where
+        the design fall short.
+
+PATTERNS & PRINCIPLES
+    * All codes should be testable
+    * Most of the code should be portable. The domain model should be totally portable. It should not know ANYTHING about the interface.
+    * Lower the direct dependencies between objects. (Loose coupling)
+    * Dont't Repeat Yourself (DRY)
+    * Use modular design
+
+
