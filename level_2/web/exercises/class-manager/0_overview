@@ -41,17 +41,22 @@ INITIAL REQUIREMENTS
 
 
 OBJECT DESIGN
-    * Next you have to identify the type of objects, their properties/methods and the relationship between these objects, so that the requiremnts are satisfied.
-    * While designing, I observe that I should rather use the word USER instead of STUDENT, because I observe no property that makes it called a STUDENT.
+    * Next you have to identify the type of objects, their properties/methods and the relationship between these objects, so that the requirements are satisfied.
+
+    * While designing, I observe that STUDENT, TEACHER and PARTICIPANT, all share some common properties like firstName, lastName ..
+        Hence I will benefit of prototypal inheritance to prevent code re-use. I will collect common properties on USER. 
+
     * If I think that an object should be able to live alone / independently, I design it as a FIRST CLASS Otherwise, I place it inside another object.
+
     * I try to design so that all data should not placed on multiple objects. For instance, a user's name, is only at User object, and nowhere else.
         That makes our life easier when updating the properties of an object and prevent inconsistency issues.
+
     * IDs should be uniq within the series of objects of same kind. They are for making some functionalities (searching, updating ..) possible or easier.
         For example, a specific userId, should always represent the same USER object. Multiple USER objects should not share the same userId.
 
     USER: userId, firstname, lastname, email, mobile
     BALANCE: balanceId, userId, current, TRANSACTIONs
-        TRANSACTION: transactionId, dateOccured, userId, amount, description, type (On of DEBIT or CREDIT), REASON
+        TRANSACTION: transactionId, dateOccured, userId, amount, before, after, description, type (On of DEBIT or CREDIT), REASON
             REASON: type (One of PAYMENT, CLASS_REGISTRATION ..), DETAIL
                 DETAIL: *
     CLASS: classId, name, subject, price

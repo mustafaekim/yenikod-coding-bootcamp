@@ -5,3 +5,7 @@ function User(userId, firstName, lastName, email, mobile){
     this.email = email;
     this.mobile = mobile;
 }
+
+
+/* Export */
+module.exports = User;

@@ -3,6 +3,8 @@
 * Don't modify __proto__, use Object.create()
 * Store methods on prototypes, store mutable-per-instance state on instance objects
 * Use closure to store private data
+* Use conventions so that your code becomes more predictable for readers.
+* Make functions do a single, clear thing.
 
 - SCOPE
     * Avoid declaring global variables.

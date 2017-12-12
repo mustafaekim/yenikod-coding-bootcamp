@@ -1,0 +1,16 @@
+{
+  "name": "class-manager",
+  "version": "1.0.0",
+  "description": "teachers can manage their classes and students",
+  "main": "main.js",
+  "scripts": {
+    "test": "node ./node_modules/mocha/bin/mocha",
+    "bundle": "node ./node_modules/webpack/bin/webpack.js --config ./webpack.config.js"
+  },
+  "author": "Mustafa Ekim",
+  "license": "ISC",
+  "devDependencies": {
+    "mocha": "^4.0.1",
+    "webpack": "^3.10.0"
+  }
+}

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+
+
+<html>
+
+<head>
+    <script src="./class-manager-domain.js"></script>
+
+
+    <style>
+        .form-row {
+            margin: 10px 0px;
+        }
+
+        .form-row>label {
+            display: inline-block;
+            min-width: 150px;
+        }
+
+        #student-list{
+            margin:15px 0px;
+        }
+
+        #student-list .header{
+            font-size:28px;
+            font-weight:bold;
+            color: red;
+        }
+
+        #student-list .student-item{
+            font-size:20px;
+            color: white;
+            margin:5px 0px;
+            background:grey;
+            padding:3px;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div id="student-list"></div>
+
+    <div class="new-student">
+        <div class="header">New Student</div>
+        <div class="create-new-student">
+            <form name="createNewStudent">
+                <div class="form-row">
+                    <label>User ID:</label>
+                    <input name="userId">
+                </div>
+                <div class="form-row">
+                    <label>First name</label>
+                    <input name="firstName">
+                </div>
+                <div class="form-row">
+                    <label>Last name</label>
+                    <input name="lastName">
+                </div>
+                <div class="form-row">
+                    <label>E-mail</label>
+                    <input name="email">
+                </div>
+                <div class="form-row">
+                    <label>Mobile</label>
+                    <input name="mobile">
+                </div>
+                <div class="form-row">
+                    <button type="button" id="create-new-user-button">Create New Student</button>
+                </div>
+
+            </form>
+        </div>
+
+    </div>
+
+    <script>
+        /*
+            App State & Renderer
+        */
+
+        function StudentRenderer(rootElementId) {
+            var students = [];
+
+            function render() {
+                var root = document.getElementById(rootElementId);
+
+                // Clear the elements inside
+                while (root.firstChild) {
+                    root.removeChild(root.firstChild);
+                }
+
+                if(students.length>0){
+                    var header = document.createElement("div");
+                    header.classList.add("header");
+                    header.appendChild(new Text("Students"));
+                    root.appendChild(header);
+                }
+
+                for (var i = 0; i < students.length; i++) {
+                    var studentRow = document.createElement("div");
+                    studentRow.classList.add("student-item");
+                    studentRow.setAttribute("data-user-id", students[i].userId)
+                    studentRow.innerHTML = students[i].firstName + " " + students[i].lastName + " M:" + students[i].mobile + " | E: " + students[i].email;
+                    root.appendChild(studentRow);
+                }
+                console.debug(students);
+            }
+
+            function addStudent(student) {
+                students.push(student);
+                render();
+            }
+
+            return {
+                addStudent: addStudent
+            }
+
+        }
+
+        var studentRenderer = StudentRenderer("student-list")
+
+
+
+    </script>
+
+
+    <script>
+        var createNewUserButton = document.getElementById("create-new-user-button");
+        createNewUserButton.addEventListener("click", function (event) {
+            var form = document.createNewStudent;
+            var userId = form.elements.userId.value;
+            var firstName = form.elements.firstName.value;
+            var lastName = form.elements.lastName.value;
+            var mobile = form.elements.mobile.value;
+            var email = form.elements.email.value;
+
+            var newStudent = new Student(userId, firstName, lastName, email, mobile);
+            studentRenderer.addStudent(newStudent);
+        })
+    </script>
+
+</body>
+
+</html>
