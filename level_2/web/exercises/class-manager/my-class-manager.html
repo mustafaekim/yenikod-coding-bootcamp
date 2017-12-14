@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+
+
+<hmtl>
+
+    <head>
+
+        <script>
+
+            var StudentSectionManager = function (
+                addHeadingsButtonId,
+                clearHeadingsButtonId,
+                createStudentFormName,
+                createStudentButtonId,
+                listStudentsSection
+            ) {
+
+                /* Initialization */
+                var addedHeaders;
+                var studentListManager = StudentListManager();
+                var studentListRenderer = StudentListRenderer(listStudentsSection);
+                studentListManager.subscribe(studentListRenderer);
+
+                var clearHeadingsButton = document.getElementById(clearHeadingsButtonId);
+                var addHeadingsButton = document.getElementById(addHeadingsButtonId);
+                var createStudentFormSubmitButton = document.getElementById(createStudentButtonId);
+                var createStudenForm = document.forms[createStudentFormName]
+
+                var sections = [
+                    {
+                        id: "create-student-section"
+                        , heading: "New Student"
+                    }
+                    , {
+                        id: "list-students-section"
+                        , heading: "List Students"
+                    }
+                    , {
+                        id: "student-profile-section"
+                        , heading: "Student Profile"
+                    }
+                ];
+
+                function StudentListManager() {
+                    var students = [];
+                    var observers = [];
+
+                    function addStudent(user) {
+                        students.push(user);
+                        notify();
+                    }
+
+                    function subscribe(observer) {
+                        observers.push(observer);
+                    }
+
+                    function notify() {
+                        observers.forEach(function (observer) {
+                            observer.updateStudentList(students);
+                        });
+                    }
+
+                    return {
+                        addStudent: addStudent
+                        , subscribe: subscribe
+                    }
+                }
+
+                function StudentListRenderer(listStudentsSection){
+                    var section = document.getElementById(listStudentsSection);
+
+                    function updateStudentList(students){
+                        students.forEach(function(student){
+                            section.appendChild(new Text(student.userId))
+                        })
+                    }
+
+                    return {
+                        updateStudentList: updateStudentList
+                    }
+                }
+
+                init();
+
+                /* Functions */
+
+                function init() {
+                    addedHeaders = []
+                    students = [];
+                    addHeaders();
+                    listenButtons();
+                }
+
+                function listenButtons() {
+                    clearHeadingsButton.addEventListener("click", function (e) {
+                        console.log("I am clicked")
+                        clearAddedHeaders();
+                        clearHeadingsButton.setAttribute("disabled", true);
+                        addHeadingsButton.removeAttribute("disabled");
+                    })
+
+                    addHeadingsButton.addEventListener("click", function (e) {
+                        clearAddedHeaders();
+                        addHeaders();
+                        addHeadingsButton.setAttribute("disabled", true);
+                        clearHeadingsButton.removeAttribute("disabled");
+                    })
+
+                    createStudentFormSubmitButton.addEventListener("click", function (e) {
+                        var elements = createStudenForm.elements;
+                        var studentId = elements.studentId.value;
+                        var firstName = elements.firstName.value;
+                        var lastName = elements.lastName.value;
+                        var mobile = elements.mobile.value;
+                        var email = elements.email.value;
+                        var user = {
+                            userId: studentId
+                            , firstName: firstName
+                            , lastName: lastName
+                            , mobile: mobile
+                            , email: email
+                        }
+                        studentListManager.addStudent(user);
+                        //createStudenForm.reset();
+                    })
+                }
+
+                function addHeaders() {
+                    sections.forEach(function (section) {
+                        addHeader(section.id, section.heading);
+                    })
+                    addHeadingsButton.setAttribute("disabled", true);
+                }
+
+                function addHeader(elementId, text) {
+                    var header = document.createElement("h1");
+                    header.appendChild(new Text(text));
+                    addedHeaders.push(header);
+
+                    var element = document.getElementById(elementId);
+                    element.insertAdjacentElement("afterbegin", header);
+                }
+
+                function clearAddedHeaders() {
+                    for (var i = 0; i < addedHeaders.length; i++) {
+                        addedHeaders[i].parentNode.removeChild(addedHeaders[i]);
+                    }
+                    addedHeaders = [];
+                }
+
+
+
+                return {
+                    addHeader: addHeader,
+                    addHeaders: addHeaders,
+                    clearAddedHeaders: clearAddedHeaders
+                }
+
+            }
+
+        </script>
+
+
+        <style>
+            .flex-container {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-around
+            }
+
+            #create-student-section {
+                background: #ffe6e6;
+                flex-grow: 1;
+            }
+
+            #list-students-section {
+                background: #ffcccc;
+                flex-grow: 1;
+            }
+
+            #student-profile-section {
+                background: #ffb3b3;
+                flex-grow: 1;
+            }
+
+            #toolbar {
+                margin-bottom: 15px;
+                padding: 15px;
+                border: 1px solid black;
+                display: inline-flex;
+            }
+
+            #toolbar button {
+                margin: 0px 5px;
+            }
+
+            form[name="createStudenForm"]>div {
+                margin: 5px 0px;
+            }
+
+            form[name="createStudenForm"]>div>label {
+                display: inline-block;
+                width: 200px;
+                color: red;
+            }
+
+            form[name="createStudenForm"]>div>button {
+                margin-left: 203px;
+            }
+        </style>
+
+    </head>
+
+
+    <body>
+
+        <div id="toolbar">
+            <button id="add-student-section-headings-button" type="button">Add Student Section Headings</button>
+            <button id="clear-student-section-headings-button" type="button">Clear Student Section Headings</button>
+
+        </div>
+
+        <div class="flex-container">
+            <div id="create-student-section">
+                <form name="createStudenForm">
+                    <div>
+                        <label>Student Id:</label>
+                        <input type="text" name="studentId">
+                    </div>
+                    <div>
+                        <label>First Name:</label>
+                        <input type="text" name="firstName">
+                    </div>
+                    <div>
+                        <label>Last Name:</label>
+                        <input type="text" name="lastName">
+                    </div>
+                    <div>
+                        <label>Mobile: </label>
+                        <input type="text" name="mobile">
+                    </div>
+                    <div>
+                        <label>Email: </label>
+                        <input type="text" name="email">
+                    </div>
+                    <div>
+                        <button type="button" id="create-student-form-submit-button">Create New Student</button>
+                    </div>
+                </form>
+            </div>
+            <div id="list-students-section">DIV 2</div>
+            <div id="student-profile-section">DIV 3</div>
+        </div>
+
+
+
+        <script>
+            var sshm = StudentSectionManager(
+                "add-student-section-headings-button"
+                , "clear-student-section-headings-button"
+                , "createStudenForm"
+                , "create-student-form-submit-button"
+                , "list-students-section"
+            );
+
+            var createUserSection = document.getElementById("create-user-section");
+            var listUsersSection = document.getElementById("list-users-section");
+            var userProfileSection = document.getElementById("user-profile-section");
+
+
+
+        </script>
+
+    </body>
+
+
+
+</hmtl>
