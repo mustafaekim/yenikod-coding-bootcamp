@@ -14,7 +14,5 @@ describe('Balance', function () {
 
         aBalance.addTransaction(new Date(), 15, "test desc", Transaction.TYPES.IN, {hop: "zop"});        
         assert.strictEqual(aBalance.current, 25);
-
-        console.dir(aBalance)
     });
 });

@@ -4,7 +4,7 @@
 <html>
 
 <head>
-    <script src="./class-manager-domain.js"></script>
+    <script src="./class-manager-domain-bundle.js"></script>
 
 
     <style>
@@ -136,7 +136,7 @@
             var mobile = form.elements.mobile.value;
             var email = form.elements.email.value;
 
-            var newStudent = new Student(userId, firstName, lastName, email, mobile);
+            var newStudent = new cmd.Student(userId, firstName, lastName, email, mobile);
             studentRenderer.addStudent(newStudent);
         })
     </script>

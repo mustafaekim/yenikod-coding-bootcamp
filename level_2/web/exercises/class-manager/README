@@ -1,0 +1,8 @@
+* Create a new dir: class-manager
+* Get into this dir.
+* RUN: "npm init"
+* Add your dependencies
+    - OR, install dependencies: 
+        npm install mocha --save-dev
+        npm install webpack --save-dev
+* RUN: npm install

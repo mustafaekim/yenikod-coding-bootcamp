@@ -1,0 +1,14 @@
+{
+  "name": "hellonpm",
+  "version": "1.0.0",
+  "description": "discover how npm works",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "mustafa ekim",
+  "license": "ISC",
+  "dependencies": {
+    "lodash": "^4.17.4"
+  }
+}
