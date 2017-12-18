@@ -44,25 +44,27 @@ function isProgrammer(state, languages) {
     }
 }
 
-function userFactory(firstName, lastName, age) {
+function ProfessionalStudentProgrammer(firstName, lastName, age, studentNo, companyName, salary, languages) {
+
     var state = { firstName, lastName, age }
 
     return Object.assign(
         {
-            setFirstName: function(value){
+            setFirstName: function (value) {
                 state.firstName = value;
             }
         }
-        , isStudent(state, 2140341)
-        , isEmployee(state, "Vanilya", 1000)
-        , isProgrammer(state, [
-            { language: "JavaScript", level: "Advanced" }
-            , { language: "Go", level: "Medium" }
-        ])
+        , isStudent(state, studentNo)
+        , isEmployee(state, companyName, salary)
+        , isProgrammer(state, languages)
     )
 }
 
-var mustafa = userFactory("Mustafa", "Ekim", 35)
+var mustafa = ProfessionalStudentProgrammer("Mustafa", "Ekim", 35, 2140341, "Vanilya", 1000, [
+    { language: "JavaScript", level: "Advanced" }
+    , { language: "Go", level: "Medium" }
+]);
+
 console.log(mustafa.buildCV());
 
 mustafa.addNewLanguage("SQL", "Advanced");
@@ -72,14 +74,17 @@ mustafa.setFirstName("Mahmut");
 console.log(mustafa.buildCV());
 
 console.dir(mustafa)
+
 /*
-{ setFirstName: [Function],
-  getStudentId: [Function],
-  setStudentId: [Function],
-  getCompanyName: [Function],
-  setSalary: [Function],
-  calculatYearlySalary: [Function],
-  getLanguages: [Function],
-  addNewLanguage: [Function],
-  buildCV: [Function] }
+    { 
+        setFirstName: [Function],
+        getStudentId: [Function],
+        setStudentId: [Function],
+        getCompanyName: [Function],
+        setSalary: [Function],
+        calculatYearlySalary: [Function],
+        getLanguages: [Function],
+        addNewLanguage: [Function],
+        buildCV: [Function] 
+    }
 */
