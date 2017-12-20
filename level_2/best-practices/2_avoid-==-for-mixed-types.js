@@ -1,5 +1,5 @@
 /* 
-    Avoid using == with Mixed types
+    Avoid using == with Mixed types (values having different types)
     because by using == operator you allow coercion, which makes a call to valueOf function of the object
 */
 

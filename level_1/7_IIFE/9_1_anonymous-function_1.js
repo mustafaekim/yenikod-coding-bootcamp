@@ -1,4 +1,4 @@
-// function declaration (name is required)
+// function declaration (name is required) -> this is a statement
 function hi(){
     return "hi";
 }

@@ -4,8 +4,6 @@
 <html>
 
 <head>
-    <script src="./class-manager-domain-bundle.js"></script>
-
 
     <style>
         .form-row {
@@ -17,22 +15,22 @@
             min-width: 150px;
         }
 
-        #student-list{
-            margin:15px 0px;
+        #student-list {
+            margin: 15px 0px;
         }
 
-        #student-list .header{
-            font-size:28px;
-            font-weight:bold;
+        #student-list .header {
+            font-size: 28px;
+            font-weight: bold;
             color: red;
         }
 
-        #student-list .student-item{
-            font-size:20px;
+        #student-list .student-item {
+            font-size: 20px;
             color: white;
-            margin:5px 0px;
-            background:grey;
-            padding:3px;
+            margin: 5px 0px;
+            background: grey;
+            padding: 3px;
         }
     </style>
 
@@ -40,8 +38,10 @@
 
 <body>
 
+    <!-- Root Element for StudentRenderer -->
     <div id="student-list"></div>
 
+    <!-- Root for New Student Form -->
     <div class="new-student">
         <div class="header">New Student</div>
         <div class="create-new-student">
@@ -76,9 +76,6 @@
     </div>
 
     <script>
-        /*
-            App State & Renderer
-        */
 
         function StudentRenderer(rootElementId) {
             var students = [];
@@ -91,7 +88,7 @@
                     root.removeChild(root.firstChild);
                 }
 
-                if(students.length>0){
+                if (students.length > 0) {
                     var header = document.createElement("div");
                     header.classList.add("header");
                     header.appendChild(new Text("Students"));
@@ -119,9 +116,8 @@
 
         }
 
+        // I attach the StudentRenderer by providing an Element ID, showing the place on page where it will manage
         var studentRenderer = StudentRenderer("student-list")
-
-
 
     </script>
 
@@ -136,7 +132,7 @@
             var mobile = form.elements.mobile.value;
             var email = form.elements.email.value;
 
-            var newStudent = new cmd.Student(userId, firstName, lastName, email, mobile);
+            var newStudent = { userId: userId, firstName: firstName, lastName: lastName, email: email, mobile: mobile };
             studentRenderer.addStudent(newStudent);
         })
     </script>

@@ -1,0 +1,4 @@
+* Classes are not hoisted
+* Classes are block scoped
+* You cannot instantiate a class without the new operator
+* .prototype property of a class is readonly

@@ -10,3 +10,14 @@
     "Constructor call" is calling a function by the new keyword
     A constructor call makes an object linked to the function's prototype property (through the __proto__ property)
 */
+
+function User(name){
+    if(this instanceof User)
+        this.name = name
+}
+
+var me = new User("Mustafa");
+console.log(me);
+
+me = User.call({})
+console.log(me);

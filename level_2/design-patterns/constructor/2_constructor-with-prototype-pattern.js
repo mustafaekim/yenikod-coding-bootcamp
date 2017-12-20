@@ -1,3 +1,8 @@
+/*
+    Each object constructed by Car, will have its own instance of properties (model, year, miles)
+        meanwhile they will all be delegated same properties through Car.prototype
+*/
+
 function Car(model, year, miles) {
 
     this.model = model;

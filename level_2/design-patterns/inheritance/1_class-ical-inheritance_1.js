@@ -9,6 +9,10 @@
             In this example, child1.__proto__.name exists but it does not make real sense
         - The real problem is that we cannot pass any arguments into "new Parent()"
 
+    Short:
+        Drawback 1: own properties added to `this` is inherited
+        Drawback 2: it doesn't enable you to pass parameters to the child constructor
+
 */
 
 

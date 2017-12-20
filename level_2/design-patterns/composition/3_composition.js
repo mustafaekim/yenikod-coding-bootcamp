@@ -22,7 +22,7 @@ function isEmployee(state, companyName, salary) {
         , setSalary: function (value) {
             state.salary = salary;
         }
-        , calculatYearlySalary: function () {
+        , calculateYearlySalary: function () {
             return state.salary * 12;
         }
     }

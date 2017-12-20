@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+
+<html>
+
+<!--
+    MutationObservers are async by specfication, in that they will wait for the current stack to be empty before it calls your callback function. 
+    This is useful so your callback is not called each time you make a change to the DOM but only after all your changes have been made.
+-->
+
+<head>
+    <script>"use strict"</script>
+
+</head>
+
+<body>
+
+    <div id="some-id">Hello Mutation Observers!</div>
+
+    <script>
+        // Callback function to execute when mutations are observed
+        var callback = function (mutationsList) {
+            console.log("New mutations have occured");
+            for (var mutation of mutationsList) {
+                if (mutation.type == 'childList') {
+                    console.log('A child node has been added or removed.');
+                    console.dir(mutation.addedNodes);
+                }
+                else if (mutation.type == 'attributes') {
+                    console.log('The ' + mutation.attributeName + ' attribute was modified.');
+                }
+            }
+        };
+
+        // The node that will be observed for mutations
+        var someIdEl = document.getElementById("some-id");
+
+        // Create an observer instance linked to the callback function
+        var observer = new MutationObserver(callback);
+
+        // Options for the observer (which mutations to observe)
+        var config = { attributes: true, childList: true };
+
+        // Start observing the target node for configured mutations
+        observer.observe(someIdEl, config);
+
+        // Do something that is observable
+        someIdEl.removeChild(someIdEl.firstChild)
+
+        var pEl = document.createElement("p");
+        pEl.textContent = "My insertion here will be observed by the mutation observer";
+
+        someIdEl.appendChild(pEl);
+
+        // Later, you can stop observing
+        // However because MutationObserver is async, if I disconnect NOW, nothing will be observed.
+        // The disconnect should be called in a later time
+        //observer.disconnect();
+    </script>
+</body>
+
+</html>

@@ -1,5 +1,7 @@
-var arr = ["Mustafa", "Ekim"].filter(function(item){
-    return item == "Mustafa"
-});
+function go() {
+    console.log(arguments);
+}
 
-console.log(arr);
+
+var arr = ["mustafa", "ekim"]
+go(arr.map(a => "***" + a))

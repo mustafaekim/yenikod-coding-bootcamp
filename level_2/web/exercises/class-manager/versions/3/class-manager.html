@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+
+
+<html>
+
+<head>
+    <script src="./pubsub.js"></script>
+
+    <style>
+        .flex-container {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around
+        }
+
+        #studentSection>div {
+            background: #ffe6e6;
+            flex-grow: 1;
+        }
+
+        #toolbar {
+            margin-bottom: 15px;
+            padding: 15px;
+            border: 1px solid black;
+            display: inline-flex;
+        }
+
+        #toolbar button {
+            margin: 0px 5px;
+        }
+
+        form.createNewStudentForm>div {
+            margin: 5px 0px;
+        }
+
+        form.createNewStudentForm>div>label {
+            display: inline-block;
+            width: 200px;
+            color: red;
+        }
+
+        form.createNewStudentForm>div>button {
+            margin-left: 203px;
+        }
+    </style>
+</head>
+
+
+<body>
+
+    <!-- 
+            Create New Student Form Template
+                * id: createNewStudentFormTemplate
+        -->
+
+    <template id="createNewStudentFormTemplate">
+        <form class="createNewStudentForm">
+            <div>
+                <label>Student Id:</label>
+                <input type="text" name="studentId">
+            </div>
+            <div>
+                <label>First Name:</label>
+                <input type="text" name="firstName">
+            </div>
+            <div>
+                <label>Last Name:</label>
+                <input type="text" name="lastName">
+            </div>
+            <div>
+                <label>Mobile: </label>
+                <input type="text" name="mobile">
+            </div>
+            <div>
+                <label>Email: </label>
+                <input type="text" name="email">
+            </div>
+            <div>
+                <button type="button">Create New Student</button>
+            </div>
+        </form>
+    </template>
+
+    <div id="toolbar">
+        x
+    </div>
+
+    <div id="studentSection" class="flex-container">
+    </div>
+
+    <script>
+
+        var StudentSectionManager = function (rootElementId, createNewStudentFormTemplateElementId) {
+
+
+            /* Initialization */
+            var rootElement = document.getElementById(rootElementId);
+            var createNewStudentFormTemplateElement = document.getElementById(createNewStudentFormTemplateElementId).content.cloneNode(true);
+
+            var btnCreateNewStudent;
+
+            var sections = [
+                {
+                    id: "section-create-new-student"
+                    , heading: "Create New Student"
+                    , template: createNewStudentFormTemplateElement
+                },
+                {
+                    id: "section-list-students"
+                    , heading: "List Students"
+                },
+                {
+                    id: "section-student-profile"
+                    , heading: "Student Profile"
+                }
+            ]
+
+            renderSections();
+            listenButtons();
+
+            var studentListRenderer = StudentListRenderer();
+            Pubsub.on("new-student", function (eventName, data) {
+                studentListRenderer.render(data);
+            })
+
+            /* Functions */
+
+            function renderSections(rootElementId) {
+
+                // Clear Root Element Childs
+                while (rootElement.firstChild) {
+                    rootElement.removeChild(rootElement.firstChild);
+                }
+
+                sections.forEach(function (section) {
+                    // create div
+                    section.element = document.createElement("div"); // I add a property to the section element to store the newly created element
+                    section.element.setAttribute("id", section.id);
+
+                    // add header into the div
+                    var header = document.createElement("h1");
+                    header.textContent = section.heading;
+                    section.element.appendChild(header)
+
+                    // add template if any
+                    if (section.template) {
+                        section.element.appendChild(section.template);
+                    }
+
+                    // attach to DOM through the root element
+                    rootElement.appendChild(section.element)
+                })
+                btnCreateNewStudent = sections[0].element.querySelector("button");
+            }
+
+            function listenButtons() {
+                btnCreateNewStudent.addEventListener("click", function (e) {
+                    var elements = sections[0].element.querySelector("form").elements;
+                    var studentId = elements.studentId.value;
+                    var firstName = elements.firstName.value;
+                    var lastName = elements.lastName.value;
+                    var mobile = elements.mobile.value;
+                    var email = elements.email.value;
+                    var user = {
+                        userId: studentId
+                        , firstName: firstName
+                        , lastName: lastName
+                        , mobile: mobile
+                        , email: email
+                    }
+                    Pubsub.emit("new-student", user);
+                    //createStudenForm.reset();
+                })
+            }
+
+            function StudentListRenderer() {
+                var students = [];
+                var studentsTable = document.createElement("div");
+                sections[1].element.appendChild(studentsTable);
+
+                function clear() {
+                    while (studentsTable.firstChild)
+                        studentsTable.removeChild(studentsTable.firstChild);
+                }
+
+                function render(newStudent) {
+                    clear();
+
+                    if (newStudent) {
+                        students.push(newStudent);
+                    }
+
+                    students.forEach(function (student) {
+                        studentsTable.appendChild(new Text(student.firstName));
+                    })
+                }
+
+                return {
+                    render: render
+                }
+            }
+
+            return {}
+
+        }
+
+    </script>
+
+    <script>
+        var sshm = StudentSectionManager("studentSection", "createNewStudentFormTemplate");
+    </script>
+
+</body>
+
+
+
+</html>

@@ -1,0 +1,1 @@
+// a mediator can also act like a pub/sub

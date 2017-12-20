@@ -1,12 +1,25 @@
-* Use semicolons for ending statements
-* Never modify the arguments object
-* Don't modify __proto__, use Object.create()
-* Store methods on prototypes, store mutable-per-instance state on instance objects
-* Use closure to store private data
-* Use conventions so that your code becomes more predictable for readers.
-* Make functions do a single, clear thing.
+- READABILITY
+    * Use conventions so that your code becomes more predictable for readers.
+
+- GENERAL
+    * Use semicolons for ending statements
+    * Don't extend or modify the built-ins
+    
+    
+- FUNCTIONS
+    * Never modify the arguments object
+    * Make functions do a single, clear thing.
+    * Use closure to store private data
+    
+- PROTOTYPES
+    * Don't modify __proto__, use Object.create()
+    * Store methods on prototypes, store mutable-per-instance state on instance objects
 
 - SCOPE
     * Avoid declaring global variables.
     * Declare variables as locally as possible.
     * Use IIFE to create local scope.
+
+- OBJECT
+    * Use object literal instead of 'new Object()'
+    * use array literal instead of 'new Array()'

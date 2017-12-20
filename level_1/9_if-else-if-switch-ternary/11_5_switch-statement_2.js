@@ -1,5 +1,5 @@
 // If you omit break from a case, and that case matches or runs, 
-// execution will continue with the next case's statements regardless of that case matching. 
+// execution will continue with the next case's statements regardless of that case matching. (aka. fall-through)
 
 var a=2;
 switch (a) {
