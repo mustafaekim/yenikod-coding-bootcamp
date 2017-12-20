@@ -66,3 +66,5 @@ console.log(user2.greet());
 
 console.log("There are " + user1.noOfUsersAfterMe() + " user(s) created after " + user1.name);
 console.log("There are " + user2.noOfUsersAfterMe() + " user(s) created after " + user2.name);
+
+console.log("The next user after " + user2.name + " will have the id: " + User.nextId(user2));
