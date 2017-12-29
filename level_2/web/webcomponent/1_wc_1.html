@@ -1,0 +1,27 @@
+<html>
+
+<head>
+    <script>
+
+        class MyFirstElement extends HTMLElement {
+
+            connectedCallback() {
+                let div1 = document.createElement("div");
+                div1.insertAdjacentText("afterbegin", "Hello Web Components!");
+                this.appendChild(div1);
+            }
+        }
+
+
+        customElements.define('my-first-element', MyFirstElement);
+    </script>
+
+</head>
+
+<body>
+
+    <my-first-element></my-first-element>
+
+</body>
+
+</html>

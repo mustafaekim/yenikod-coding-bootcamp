@@ -1,0 +1,15 @@
+* Every DOM element has its own addEventListener method which allows you to listen specifically on that element.
+    - addEventListener allows you to add any number of handlers
+* Giving a node an onclick attribute has a similar effect but a node has one onclick attribute
+    - so you can register only one handler per node that way
+* removeEventListener
+* event handler function is passed an argument: the event object, which gives additional information about the event.
+
+
+* Event propagation: Event handlers registered on nodes with children will also receive some events that happen on children
+    - use stopPropagation() on event object inside the event handler function
+
+* Many events have a default action associated with them. 
+    - i.e. If you click a link, you wil be taken on the link's target
+    - For most types of events, the JavaScript event handlers are called before the default behaviour action performed.
+    - If the handler does not want the normal behaviour to happen, it can call the preventDefault() method on the event object

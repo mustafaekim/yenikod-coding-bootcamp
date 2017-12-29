@@ -1,0 +1,42 @@
+<html>
+
+<head>
+
+
+</head>
+
+<body>
+
+    <p>Please click on the checkbox control.</p>
+
+    <form>
+        <label for="id-checkbox">Checkbox:</label>
+        <input type="checkbox" id="id-checkbox" />
+    </form>
+
+    <div id="output-box"></div>
+
+    <div style="background:grey; margin: 20px 0px; margin:15px; color: white;">
+        <h4>Below is a link</h4>
+        <a href="https://www.yenikodyazilimkursu.com">Yenikod Bootcamp</a>
+        <h4>Below is another link that is prevented to perform the default behaviour</h4>
+        <a id="link_1" href="https://www.yenikodyazilimkursu.com">Yenikod Bootcamp</a>
+    </div>
+
+
+    <script>
+        document.querySelector("#id-checkbox").addEventListener("click", function (event) {
+            document.getElementById("output-box").innerHTML += "Sorry! <code>preventDefault()</code> won't let you check this!<br>";
+            event.preventDefault();
+        }, false);
+
+        var link_1 = document.getElementById("link_1");
+        link_1.addEventListener("click", function (event) {
+            event.preventDefault();
+            window.location = "https://www.google.com";
+        })
+    </script>
+
+</body>
+
+</html>
