@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <script src="pubsub.js">
+
+    </script>
+
+    <style>
+        .flex-container {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            margin-bottom: 40px;
+            padding: 20px;
+        }
+
+        .flex-container>div {
+            padding: 20px;
+
+        }
+
+        .form-row {
+            margin-bottom: 15px;
+            min-width: 300px;
+
+        }
+
+        form label {
+            display: inline-block;
+            min-width: 100px;
+
+        }
+
+        table {
+            width: 100%;
+            text-align: center;
+        }
+
+        td {
+            padding: 5px;
+        }
+
+        table,
+        tr,
+        td,
+        th {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+
+
+
+<body>
+
+    <div class="flex-container">
+
+        <div>
+            <h2>New Student</h2>
+            <form id="new-student-form">
+
+                <div class="form-row">
+                    <label>User Id:</label>
+                    <input type="text" name="userId" />
+                </div>
+
+                <div class="form-row">
+                    <label>First Name:</label>
+                    <input type="text" name="firstName" />
+                </div>
+
+                <div class="form-row">
+                    <label>Last Name:</label>
+                    <input type="text" name="lastName" />
+                </div>
+
+                <div class="form-row" style="text-align:  right;">
+                    <button type='button' onclick="newUserRequest('new-student-form')">
+                        Save:
+                    </button>
+
+
+                </div>
+
+
+            </form>
+        </div>
+        <div style="flex-grow :1">
+            <h2>Students List</h2>
+            <div id="students-list"></div>
+        </div>
+        <div>
+            <h2>Students Details</h2>
+            <div id="student-details"></div>
+        </div>
+    </div>
+
+
+    <div class="flex-container">
+
+    </div>
+
+    <div class="flex-container">
+
+    </div>
+
+
+
+    <script>
+        var appMediator = (function () {
+            var students = [];
+
+
+            return {
+                addStudent: function (student) {
+                    students.push(student);
+                    Pubsub.emit("students-updated", students);
+                },
+                getStudents: function () { return students }
+                , showStudentDetail: function (rootElementId, user) {
+                    var showProfileRootElement = document.getElementById(rootElementId);
+                    showProfileRootElement.appendChild(new Text(user.userId));
+                }
+            }
+
+        })();
+
+        function newUserRequest(formId) {
+            var form = document.getElementById(formId);
+            var newUser = {
+                userId: form.userId.value,
+                firstName: form.firstName.value,
+                lastName: form.lastName.value
+            }
+            appMediator.addStudent(newUser);
+        }
+
+        var studentsListRenderer = (function (rootId) {
+            var root = document.getElementById(rootId);
+            function render(eventName, students) {
+
+                while (root.firstChild) {
+                    root.removeChild(root.firstChild)
+                }
+
+                var studentsTable = document.createElement("table");
+
+                var studentsTableHeaderRow = document.createElement('tr');
+                var userIdHeaderColumn = document.createElement('th');
+                userIdHeaderColumn.textContent = 'User Id';
+
+                var firstNameHeaderColumn = document.createElement('th');
+                firstNameHeaderColumn.textContent = 'First Name';
+
+                var lastNameHeaderColumn = document.createElement('th');
+                lastNameHeaderColumn.textContent = 'Last Name';
+
+                var detailsHeaderColumn = document.createElement('th');
+
+
+                studentsTable.appendChild(userIdHeaderColumn);
+                studentsTable.appendChild(firstNameHeaderColumn);
+                studentsTable.appendChild(lastNameHeaderColumn);
+                studentsTable.appendChild(detailsHeaderColumn);
+
+                students.forEach(function (student) {
+                    var studentRow = document.createElement("tr");
+
+                    //USER ID COLUMN
+                    var userIdColumn = document.createElement('td');
+                    userIdColumn.textContent = student.userId;
+                    studentRow.appendChild(userIdColumn);
+
+                    //FIRSTNAME COLUMN
+                    var firstNameColumn = document.createElement('td');
+                    firstNameColumn.textContent = student.firstName;
+                    studentRow.appendChild(firstNameColumn);
+
+                    //LASTNAME COLUMN
+                    var lastNameColumn = document.createElement('td');
+                    lastNameColumn.textContent = student.lastName;
+                    studentRow.appendChild(lastNameColumn);
+
+                    //DETAILS BUTTON COLUMN
+                    var detailsButtonColumn = document.createElement("td");
+                    var detailsButton = document.createElement("button");
+
+                    detailsButton.textContent = 'Details';
+                    detailsButtonColumn.appendChild(detailsButton);
+                    studentRow.appendChild(detailsButtonColumn);
+
+                    detailsButton.addEventListener("click", function (event) {
+                        appMediator.showStudentDetail("student-details", student);
+                    });
+
+                    studentsTable.appendChild(studentRow);
+
+                })
+                root.appendChild(studentsTable);
+            }
+            Pubsub.on('students-updated', render)
+            return {};
+        })("students-list");
+    </script>
+
+
+</body>
+
+
+</html>

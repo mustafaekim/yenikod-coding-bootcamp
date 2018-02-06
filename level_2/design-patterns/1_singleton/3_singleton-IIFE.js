@@ -6,30 +6,23 @@
 
 
 var logger = (function Logger() {
-
     // private
     var __levels = ["DEBUG", "INFO", "WARNING", "ERROR"];
-
     function __log(level, message){
         console.log(new Date() + " | " + level + ": " + message);
     }
-
     function __debug(message){
         __log(__levels[0], message);
     }
-
     function __info(message){
         __log(__levels[1], message);
     }
-
     function __warning(message){
         __log(__levels[2], message);
     }
-
     function __error(message){
         __log(__levels[3], message);
     }
-
     // Public API
     return {
         debug: __debug

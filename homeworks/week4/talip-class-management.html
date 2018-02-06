@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+    <script>
+
+        function studentSectionRenderer() {
+
+
+            console.log("StudentSectionRenderer initialization");
+
+            var students = [];
+
+            var transactions = [];
+
+            function render() {
+
+                var root = document.getElementById('list-students')
+
+                while (root.firstChild) {
+                    root.removeChild(root.firstChild);
+                }
+
+                if (students.length > 0) {
+                    var header = document.createElement('div');
+                    header.classList.add('header');
+                    header.appendChild(new Text('Students Lists'));
+                    root.appendChild(header);
+
+                }
+
+                students.forEach(function (b, index, a) {
+
+                    var studentProperties = document.createElement('div');
+                    var studentDetails = document.createElement('button');
+                    studentProperties.classList.add('student-item');
+                    studentProperties.setAttribute('data-student-id', students[index].userId);
+                    studentProperties.innerHTML = students[index].userId + ') ' + students[index].firstName + ' ' + students[index].lastName;
+
+                    studentDetails.innerHTML = 'details';
+
+
+                    root.appendChild(studentProperties);
+                    root.appendChild(studentDetails);
+
+
+                    var details = {
+                        userId: '',
+                        firstName: '',
+                        lastName: '',
+                        age: '',
+                        mobile: '',
+                        email: ''
+                    }
+
+                    details.userId = students[index].userId;
+                    details.firstName = students[index].firstName;
+                    details.lastName = students[index].lastName;
+                    details.age = students[index].age;
+                    details.mobile = students[index].mobile;
+                    details.email = students[index].email;
+
+                    studentDetails.addEventListener('click', function () {
+                        selection = students[index].userId
+                        var detailsSection = document.getElementById('students-details');
+
+                        while (detailsSection.firstChild) {
+                            detailsSection.removeChild(detailsSection.firstChild)
+                        }
+
+                        var headers = document.createElement('div');
+                        headers.classList.add('header');
+                        headers.appendChild(new Text('Student Details'))
+                        detailsSection.appendChild(headers);
+
+                        var properties = document.createElement('div');
+                        properties.innerHTML = ' Name= ' + details.firstName + '' + details.lastName + ' Age= ' + details.age + ' Mobile= ' + details.mobile + ' Email= ' + details.email;
+                        detailsSection.appendChild(properties);
+                    }
+                    )
+                }
+                )
+            }
+
+            function transaction(userId) {
+                var root = document.getElementById('transactions-lists');
+
+                while (root.firstChild) {
+
+                    root.removeChild(root.firstChild);
+                }
+
+                if (transactions.length > 0) {
+                    var table;
+                    var row;
+                    var cell;
+
+                    var header = document.createElement('div');
+                    header.classList.add('header');
+                    header.innerHTML = 'TRANSACTİONS:';
+                    root.appendChild(header);
+
+                    table = document.createElement('table');
+                    row = table.insertRow(0);
+                    cell = row.insertCell(-1);
+                    cell.innerHTML = 'Date';
+                    cell = row.insertCell(-1);
+                    cell.innerHTML = 'Type';
+                    cell = row.insertCell(-1);
+                    cell.innerHTML = 'Payment';
+                    cell = row.insertCell(-1);
+                    cell.innerHTML = 'Current';
+
+                    root.appendChild(table);
+                }
+
+                for (var i = 0; i < transactions.length; i++) {
+                    if (transactions[i].selection == userId) {
+                        row = table.insertRow(i + 1);
+                        cell = row.insertCell(-1);
+                        cell.innerHTML = transactions[i].date;
+                        cell = row.insertCell(-1);
+                        cell.innerHTML = transactions[i].type;
+                        cell = row.insertCell(-1);
+                        cell.innerHTML = transactions[i].payment;
+                        cell = row.insertCell(-1);
+                        cell.innerHTML = transactions[i].current;
+                    }
+                }
+            }
+
+            function addStudent(newStudent) {
+                students.push(newStudent);
+                render();
+            }
+
+            function addTransaction(newTransaction, selection) {
+                transactions.push(newTransaction);
+                transaction(selection);
+            }
+
+            return {
+                addStudent: addStudent,
+                addTransaction: addTransaction
+            }
+        }
+
+
+    </script>
+
+    <script>
+
+        function classSectionRenderer() {
+            var classes = [];
+
+            function render() {
+
+                var root = document.getElementById('list-classes');
+
+                while (root.firstChild) {
+                    root.removeChild(root.firstChild);
+                }
+
+                if (classes.length > 0) {
+                    var header = document.createElement('div');
+                    header.classList.add('header');
+                    header.appendChild(new Text('Classes Lists'));
+                    root.appendChild(header);
+
+                }
+
+                classes.forEach(function (b, index, a) {
+
+                    var classProperties = document.createElement('div');
+                    var classDetails = document.createElement('button');
+                    classProperties.classList.add('student-item');
+                    classProperties.setAttribute('data-student-id', classes[index].userId);
+                    classProperties.innerHTML = 'CRN: ' + classes[index].CRN + ' Day: ' + classes[index].day + ' Duration: ' + classes[index].duration;
+
+                    classDetails.innerHTML = 'details';
+
+
+                    root.appendChild(classProperties);
+                    root.appendChild(classDetails);
+
+
+                    var details = {
+                        name: '',
+                        startDate: '',
+                        endDate: '',
+                        day: '',
+                        duration: '',
+                    }
+
+                    details.CRN = classes[index].CRN;
+                    details.startDate = classes[index].startDate;
+                    details.endDate = classes[index].endDate;
+                    details.day = classes[index].day;
+                    details.duration = classes[index].duration;
+
+                    classDetails.addEventListener('click', function (event) {
+
+                        var detailsSection = document.getElementById('classes-details');
+
+                        while (detailsSection.firstChild) {
+                            detailsSection.removeChild(detailsSection.firstChild)
+                        }
+
+                        var headers = document.createElement('div');
+                        headers.classList.add('header');
+                        headers.appendChild(new Text('Classes Details'))
+                        detailsSection.appendChild(headers);
+
+                        var properties = document.createElement('div');
+                        properties.innerHTML = ' CRN ' + details.CRN + ' S: ' + details.startDate + ' E: ' + details.endDate + ' Days= ' + details.day + ' Duration= ' + details.duration;
+                        detailsSection.appendChild(properties);
+                    }
+                    )
+                }
+                )
+            }
+
+            function addClass(newClass) {
+                classes.push(newClass);
+                render();
+            }
+
+            return {
+                addClass: addClass
+            }
+        }
+
+
+    </script>
+
+
+    <style>
+        .flex-container {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            margin-bottom: 40px;
+        }
+
+        #create-new-student {
+            background: #d8b15d;
+            flex-grow: 1;
+        }
+
+        #list-students {
+            background: #f7f5f1;
+            flex-grow: 1;
+            text-align: center;
+        }
+
+        #list-students .header {
+            font-size: 18px;
+            font-weight: bold;
+            color: rgb(49, 1, 1);
+            padding-left: 80px;
+
+        }
+
+        #list-students .student-item {
+            font-size: 20px;
+            color: white;
+            margin: 5px 0px;
+            background: rgb(211, 200, 200);
+            padding: 3px;
+        }
+
+        #students-details-section {
+            background: #ecebe9;
+            flex-grow: 1;
+            text-align: center;
+        }
+
+        #students-details-section .header {
+            font-size: 18px;
+            font-weight: bold;
+            color: rgb(49, 1, 1);
+            padding-left: 80px;
+
+        }
+
+        #students-transactions .header {
+            font-size: 18px;
+            font-weight: bold;
+            color: rgb(49, 1, 1);
+            padding-left: 80px;
+
+        }
+
+        #transactions-lists .header {
+            font-size: 18px;
+            font-weight: bold;
+            color: rgb(148, 122, 122);
+            padding-left: 80px;
+
+        }
+
+        #transactions-lists .table {
+            font-size: 18px;
+            font-weight: bold;
+            color: rgb(49, 1, 1);
+            padding-left: 80px;
+
+        }
+
+
+        #create-new-class {
+            background: #f7f5f1;
+            flex-grow: 1;
+        }
+
+        #list-classes {
+            background: #f7f5f1;
+            flex-grow: 1;
+        }
+
+        #classes-details {
+            background: #f7f5f1;
+            flex-grow: 1;
+        }
+
+        #lessons-section {
+            background: #f7f5f1;
+            flex-grow: 1;
+        }
+
+        #attendance {
+            background: #f7f5f1;
+            flex-grow: 1;
+        }
+
+
+        .student-form {
+            margin: 10px 0px;
+            padding-left: 30px;
+        }
+
+        .student-form-button {
+            margin: 10px 0px;
+            padding-left: 188px;
+
+        }
+
+        .student-form>label {
+            display: inline-block;
+            min-width: 150px;
+        }
+
+        .transaction-form {
+            margin: 10px 0px;
+            padding-left: 30px;
+        }
+
+        .transaction-form-button {
+            margin: 10px 0px;
+            padding-left: 188px;
+
+        }
+
+        .transaction-form>label {
+            display: inline-block;
+            min-width: 150px;
+        }
+
+
+        .class-form {
+            margin: 10px 0px;
+            padding-left: 30px;
+        }
+
+        .class-form-date {
+            margin: 10px 0px;
+            padding-left: 30px;
+        }
+
+        .class-form-button {
+            margin: 10px 0px;
+            padding-left: 188px;
+
+        }
+
+        .class-form>label {
+            display: inline-block;
+            min-width: 150px;
+        }
+
+        .class-form-date>label {
+            display: inline-table;
+            min-width: 10px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class='flex-container'>
+        <div id='create-new-student'>Create New Student
+            <form name='CreateNewStudent'>
+
+                <div class='student-form'>
+                    <label>User ID:</label>
+                    <input name='userId'>
+                </div>
+
+                <div class='student-form'>
+                    <label>First Name:</label>
+                    <input name='firstName'>
+                </div>
+
+                <div class='student-form'>
+                    <label>Last Name:</label>
+                    <input name='lastName'>
+                </div>
+
+                <div class='student-form'>
+                    <label>Age:</label>
+                    <input name='age'>
+                </div>
+
+                <div class='student-form'>
+                    <label>Phone Number:</label>
+                    <input name='mobile'>
+                </div>
+
+                <div class='student-form'>
+                    <label>E-mail:</label>
+                    <input name='email'>
+                </div>
+
+                <div class='student-form-button'>
+                    <button type=button id='create-new-student-button'>Create New Student</button>
+
+                </div>
+            </form>
+        </div>
+
+        <div id='list-students'></div>
+
+
+        <div id='students-details-section'>
+            <div id='students-details'>
+
+            </div>
+            <p>
+
+                <div id='students-transactions'>
+
+                    <div id='transactions-lists'>
+
+                    </div>
+
+                    <form name='AddTransactions'>
+
+                        <div class='transaction-form'>
+                            <label>Selection:</label>
+                            <input name='selection'>
+                        </div>
+
+                        <div class='transaction-form'>
+                            <label>Date:</label>
+                            <input name='date'>
+                        </div>
+
+                        <div class='transaction-form'>
+                            <label>Type:</label>
+                            <input name='type'>
+                        </div>
+
+                        <div class='transaction-form'>
+                            <label>Payment:</label>
+                            <input name='payment'>
+                        </div>
+
+                        <div class='transaction-form'>
+                            <label>Current:</label>
+                            <input name='current'>
+                        </div>
+
+                        <div class='transaction-form-button'>
+                            <button type=button id='add-transaction-button'>Add Transaction</button>
+
+                        </div>
+                    </form>
+
+
+                </div>
+
+        </div>
+
+
+
+    </div>
+
+    <div class='flex-container'>
+
+        <div id='create-new-class'>Create New Class
+
+            <form name='CreateNewClass'>
+
+                <div class='class-form'>
+                    <label>CRN:</label>
+                    <input name='CRN'>
+                </div>
+
+                <div class='class-form-date'>
+                    <label>Start Date:</label>
+                    <input name='startDate'>
+
+                    <label>End Date:</label>
+                    <input name='endDate'>
+                </div>
+
+                <div class='class-form'>
+                    <label>Day:</label>
+                    <input name='day'>
+                </div>
+
+                <div class='class-form'>
+                    <label>Duration:</label>
+                    <input name='duration'>
+                </div>
+
+                <div class='class-form-button'>
+                    <button type=button id='create-new-class-button'>Add New Class</button>
+
+                </div>
+            </form>
+        </div>
+
+
+
+        <div id='list-classes'>Classes List</div>
+
+        <div id='classes-details'> Class: </div>
+
+    </div>
+
+    <div class='flex-container'>
+        <div id='lessons-section'>Lessons</div>
+
+        <div id='attendance'>Attendance</div>
+    </div>
+
+
+    <script>  //STUDENTS SECTION:
+
+
+        var studentRenderer = studentSectionRenderer();
+
+        var createStudentFormButton = document.getElementById('create-new-student-button');
+        createStudentFormButton.addEventListener('click', function (event) {
+            var form = document.CreateNewStudent;
+            var userId = form.elements.userId.value;
+            var firstName = form.elements.firstName.value;
+            var lastName = form.elements.lastName.value;
+            var age = form.elements.age.value;
+            var mobile = form.elements.mobile.value;
+            var email = form.elements.email.value;
+
+
+            var newStudent = { userId, firstName, lastName, age, mobile, email };
+            studentRenderer.addStudent(newStudent);
+        })
+
+        var classRenderer = classSectionRenderer();
+
+        var addClassFormButton = document.getElementById('create-new-class-button');
+        addClassFormButton.addEventListener('click', function (event) {
+            var form = document.CreateNewClass;
+            var CRN = form.elements.CRN.value;
+            var startDate = form.elements.startDate.value;
+            var endDate = form.elements.endDate.value;
+            var day = form.elements.day.value;
+            var duration = form.elements.duration.value;
+
+            var newClass = { CRN, startDate, endDate, day, duration };
+            classRenderer.addClass(newClass);
+        })
+
+
+        var addTransactionButton = document.getElementById('add-transaction-button');
+        addTransactionButton.addEventListener('click', function (event) {
+            var form = document.AddTransactions;
+            var date = form.elements.date.value;
+            var type = form.elements.type.value;
+            var payment = form.elements.payment.value;
+            var current = form.elements.current.value;
+            var selection = form.elements.selection.value;
+
+            var newTransaction = { selection, date, type, payment, current }
+            studentRenderer.addTransaction(newTransaction, selection);
+
+        })
+
+
+
+
+
+    </script>
+
+</body>
+
+
+</html>

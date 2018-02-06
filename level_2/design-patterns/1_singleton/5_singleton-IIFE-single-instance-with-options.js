@@ -3,10 +3,7 @@
         logger object is instantiated in all cases (even if it's not needed/used)
         logger object is never removed
 */
-
-
 var logger = (function Logger(masterDefaultLevel) {
-
     function SingleLogger(optionalLevel) { // <- we get a level
         const DEFAULT_LEVEL_INDEX = 0; // latest fallBack
         var __levels = ["DEBUG", "INFO", "WARNING", "ERROR"];
@@ -26,37 +23,27 @@ var logger = (function Logger(masterDefaultLevel) {
                 else { defaultLevelIndex = DEFAULT_LEVEL_INDEX; } // Last priorty is setting to DEFAULT_LEVEL_INDEX
             }
         })();
-
-
         // private
         function __log(level, message) {
             console.log(new Date() + " | " + level + ": " + message);
         }
-
         this.debug = function __debug(message) {
             __log(__levels[0], message);
         }
-
         this.info = function __info(message) {
             __log(__levels[1], message);
         }
-
         this.warning = function __warning(message) {
             __log(__levels[2], message);
         }
-
         this.error = function __error(message) {
             __log(__levels[3], message);
         }
-
         this.default = function __default(message) { // <- That's new
             __log(__levels[defaultLevelIndex], message);
         }
-
     }
-
     var instance;
-
     return {
         getInstance: function (defaultLevel) {
             if (!instance) instance = new SingleLogger(defaultLevel); // <- attention here

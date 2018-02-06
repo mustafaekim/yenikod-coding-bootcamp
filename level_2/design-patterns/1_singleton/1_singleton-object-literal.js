@@ -8,11 +8,14 @@
 
 var logger = {
 
+    printLevel: 1,
+
     // Please don't change these! (??)
     levels: ["DEBUG", "INFO", "WARNING", "ERROR"]
 
     , log: function(level, message){
-        console.log(new Date() + " | " + level + ": " + message);
+        if(this.levels.indexOf(level)>=this.printLevel)
+            console.log(new Date() + " | " + level + ": " + message);
     }
 
     , debug: function(message){
