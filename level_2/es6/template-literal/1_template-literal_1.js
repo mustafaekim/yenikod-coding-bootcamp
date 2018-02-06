@@ -13,6 +13,12 @@
         - \\    > escaping \
 */
 
+
+console.log("Hello this is \n \`Mustafa\`");
+console.log(`Hello this is
+Mustafa`);
+
+
 var name="Mustafa", lastName="Ekim"; age=35;
 console.log(`Hello, my name is ${name} ${lastName} and I am ${age} years old`);
 

@@ -1,0 +1,15 @@
+{
+  "name": "testable",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "node .\\node_modules\\mocha\\bin\\mocha",
+    "testw": "node ./node_modules/mocha/bin/mocha --watch"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "mocha": "^4.1.0"
+  }
+}

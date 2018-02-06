@@ -14,12 +14,12 @@ function table(people) {
         <table>
             ${people.map(function (person) {
             return `<tr>
-                <td>${person.id}</td>
-                <td>${person.name}</td>
-            </tr>
-            `
+                    <td>${person.id}</td>
+                    <td>${person.name}</td>
+                </tr>
+                `
         }).join("")
-    }
+        }
         </table>
     `
 }

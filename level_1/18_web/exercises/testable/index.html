@@ -1,0 +1,32 @@
+<html>
+
+<head>
+    <script src="app.js"></script>
+
+    <style>
+        table tr th {
+            padding:15px;
+            border: 1px solid black;
+        }
+
+        td {
+            border:1px solid black;
+            padding:10px;
+        }
+    
+    </style>
+</head>
+
+<body>
+    <h1>Hi App</h1>
+    <div id="div_1"></div>
+
+    <script>
+        var tableHtml = window.htmlUtils.tableBuilder(["name", "age"], [["Mustafa", 35], ["Talip", 24]]);
+        document.getElementById("div_1").innerHTML = tableHtml;
+    
+    </script>
+
+</body>
+
+</html>

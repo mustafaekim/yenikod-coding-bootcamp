@@ -1,0 +1,50 @@
+<html>
+
+<head>
+
+    <script>
+
+        function full() {
+            let targetEl = document.getElementById("div_1");
+            targetEl.webkitRequestFullscreen();
+        }
+
+
+
+        document.addEventListener("webkitfullscreenchange", function (event) {
+            console.log(event);
+
+            // The event object doesn't carry information about the fullscreen state of the browser,
+            // but it is possible to retrieve it through the fullscreen API
+            if (document.fullscreen) {
+
+                // The target of the event is always the document,
+                // but it is possible to retrieve the fullscreen element through the API
+                document.fullscreenElement;
+            }
+
+        });
+
+        document.addEventListener("visibilitychange", function (event) {
+            //window.confirm("Are you sure?");
+            console.log(event);
+        });
+
+        window.addEventListener("blur", function (event) {
+            //window.confirm("Are you sure?");
+            console.log(event)
+        })
+    </script>
+
+</head>
+
+<body>
+
+    <div id="div_1" style="background:grey; padding:50px;">
+        Hello! I am a div
+        <button type="button" onclick="full(event)">Full Screen</button>
+    </div>
+
+</body>
+
+</html>
