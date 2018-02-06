@@ -41,3 +41,7 @@ console.log(mondeo.toString());
 
 /* -- */
 console.log(civic.calculatePower());
+
+/* -- */
+
+console.log(mondeo.toString.call(civic));
