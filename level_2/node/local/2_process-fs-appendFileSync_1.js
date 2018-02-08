@@ -7,7 +7,7 @@ var fs = require("fs");
 
 
 // Don't use Magic Strings & Numbers on your code
-const LOG_FILE_ABSOLUTE_PATH = __dirname + "/../../log/" + extractFileName(__filename) + ".txt";
+const LOG_FILE_ABSOLUTE_PATH = __dirname + "/../../../log/" + extractFileName(__filename) + ".txt";
 
 function extractFileName(path){
     var pathSplitter = path.indexOf("/") == -1 ? "\\" : "/";
@@ -44,4 +44,4 @@ process.on('exit', (code) => {
 });
 
 catchExceptions(); // Let's handle exceptions so that we can exit under control
-a; // Error!
+//a; // Error!
