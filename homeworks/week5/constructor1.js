@@ -7,21 +7,19 @@
 */
 function User(name) {
 
-    this.name = name;
-
     this.getMyName = function () {
-        return console.log(this.name);
+         return name;
     }
     this.lengthOfMyName= function () {
-        return console.log(this.name.length);
+         return name.length;
     }
   
     this.setMyName = function (newName) {
-        this.newName= newName
-        return this.name = this.newName
+        name = newName;
     }
+
     this.greet = function () {
-        return console.log("Hello, this is " + this.name);
+        console.log("Hello, this is " + name);
     }
 }
 
@@ -40,6 +38,11 @@ user2.greet() // -> Hello, this is Orhan
     DO SOMETHING HERE
     SO THAT THE CODE BELOW WORKS AS EXPECTED
 */
+
+user2.greet = function(){
+    console.log("Hi, my name is " + this.getMyName());
+}
+
 
 user.greet() // -> Hello, this is Arda
 user2.greet() // -> Hi, my name is Orhan!
