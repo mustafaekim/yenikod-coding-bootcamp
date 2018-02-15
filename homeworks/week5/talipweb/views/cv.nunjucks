@@ -1,0 +1,62 @@
+<!DOCTYPE>
+
+<html>
+
+<head>
+    <style>
+        .flex-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            margin-bottom: 40px;
+            padding: 20px;
+        }
+
+        .flex-container>div {
+            padding: 20px;
+
+        }
+
+        .home-page {
+            text-align: right;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="flex-container">
+        <div>
+            <h2>PROFILE:</h2>
+            <h4> Hello, my name is {{ name }} 
+            <br> And I am {{ age }} years old. </h4>
+        </div>
+        <div>
+            <h2>STUDY:</h2>
+            <h4> I graduated from {{ university.name }} , {{ university.program }} program in 2016. 
+            <br> During 2006-2010, I went to the {{ highschool }}. </h4>
+
+        </div>
+
+        <div>
+            <h2>WORK:</h2>
+            <h4> I have worked as an intern for 3 months in both '{{ workplaces.first }}' and '{{workplaces.second}}'; 
+            <br> I learned a lot from the two places but working time in {{workplaces.second}} was passed more enjoyable. </h4>
+        </div>
+        <div>
+            <h2>SKILLS:</h2>
+            <h4> {{skills.first}} , {{skills.second}}, {{skills.third }}, {{skills.fourth}} 
+        </div>
+    </div>
+
+    <br>
+
+    <div class='home-page'> -
+        <a href="/homepage"> Return to the homepage! </a>
+        -
+    </div>
+
+</body>
+
+</html>
