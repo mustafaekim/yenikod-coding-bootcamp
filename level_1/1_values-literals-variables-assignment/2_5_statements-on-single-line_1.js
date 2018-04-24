@@ -2,7 +2,7 @@
 // We do not have to start a statement in a new line
 // Actually we can put as many statements as we want in a single line, as long as we seperate statements with semicolon
 
-var x; x=5
+var x; x=5;
 
 /*
     So the code above is same as:

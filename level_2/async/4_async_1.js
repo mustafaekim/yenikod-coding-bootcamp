@@ -48,6 +48,7 @@ getY(logResult);
 getZ(logResult);
 */
 
+
 // Step 3
 // Runs one after other but does not BLOCK!
 /*
@@ -60,6 +61,8 @@ getX(function (x) {
         })
     })
 })
+
+console.log("END?")
 */
 
 

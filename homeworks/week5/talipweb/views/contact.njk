@@ -1,5 +1,48 @@
 {% extends "master.njk" %}
 
 {% block content %}
-here is contact
+    <div id ="contact-form">
+
+        <form action="/new-message" method="post">
+            First name:<br/>
+            <input type="text" name="firstName"/> 
+            <br/> 
+            
+            Last name:<br/>
+            <input type="text" name="lastName"/>
+            <br/>
+            
+            <textarea name="message"></textarea>
+            <br/>
+            <button type="submit"> Sumbit </button>
+        </form> 
+
+    </div>
+
+    <div>
+        <button onclick="sendHello()">Hello</button>
+    </div>
+
+    {% if ack %}
+        {{ ack | dump }}
+    {% endif %}
+
+    <script>
+        function sendHello(){
+            console.log("saying hello to server");
+            axios.get('/user?ID=12345')
+                .then(function (response) {
+                    console.log("response got")
+                    console.log(response);
+                })
+                .catch(function (error) {
+                    console.log("error occured");
+                    console.log(error);
+                });
+            }
+    </script>
+
+
+
 {% endblock %}
+

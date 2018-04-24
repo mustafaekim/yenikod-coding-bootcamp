@@ -24,8 +24,9 @@ function getX() {
     return future;
 }
 
-/* Step 1
+// Step 1
 
+/*
 let future = getX();
 
 future.onFinished(function (result) {
@@ -34,12 +35,9 @@ future.onFinished(function (result) {
 future.onFinished(function (result) {
     console.log("Finished 2: ", result);
 });
-
 */
 
-
-/* Step 2
-*/
+// Step 2
 
 function getY() {
     let t = getRandomSeconds();

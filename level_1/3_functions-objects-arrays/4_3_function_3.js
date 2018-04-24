@@ -6,4 +6,4 @@ function hi(firstName, lastName, age){
     }
 }
 
-hi("Mustafa", "Ekim", 35);
+hi("Mustafa", "Ekim", 35, "Ekim2");

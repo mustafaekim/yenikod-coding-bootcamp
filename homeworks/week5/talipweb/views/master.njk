@@ -1,18 +1,29 @@
-<style>
+<!DOCTYPE html>
+<html>
 
-    #navbar .navlink{
-        display: inline-block;
-        min-width:100px;
-        background:grey;
-        padding:20px;
-        text-align:center;
-    }
+<head>
+    <title>Class Manager</title>
 
-    #navbar .navlink a{
-        color: white;
-    }
+    <style>
 
-</style>
+        #navbar .navlink{
+            display: inline-block;
+            min-width:100px;
+            background:grey;
+            padding:20px;
+            text-align:center;
+        }
+
+        #navbar .navlink a{
+            color: white;
+        }
+
+    </style>
+
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+
+<body>
 
 
 <div id="navbar" style="background:blue; color: white; padding:25px; margin-bottom:15px;">
@@ -37,6 +48,9 @@
 {% block content %}
 content
 {% endblock %}
+
+</body>
+</html>
 
 
 
