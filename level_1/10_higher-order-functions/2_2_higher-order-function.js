@@ -16,6 +16,11 @@ var unpairNumbersArray = buildNumbersArray(20, function (i) {
     return i % 2 == 1;
 })
 
+var multiplesOf3Array = buildNumbersArray(30, function (i) {
+    return i % 3 == 0;
+})
+
 
 console.log(pairNumbersArray);
 console.log(unpairNumbersArray);
+console.log(multiplesOf3Array);

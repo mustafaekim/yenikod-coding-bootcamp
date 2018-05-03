@@ -3,7 +3,7 @@ for (var a = 0; a < 10; a++) {
 }
 
 
-for (var a = 0; a < 10; a++) {
+for (var a = 15; a < 20; a++) {
     console.log(a);
 }
 

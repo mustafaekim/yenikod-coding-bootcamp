@@ -9,3 +9,4 @@ analyse({
     age: 35,
     school: "mkool"
 });
+

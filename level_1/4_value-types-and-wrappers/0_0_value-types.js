@@ -40,4 +40,5 @@ console.log(typeof add);
 
 console.log(typeof []);
 
+console.log("*", typeof typeof [])
 

@@ -7,8 +7,9 @@ var x = function bar() {
 	console.log("bar");
 };
 
-bar(); // ReferenceError
+//bar(); // ReferenceError
 console.log(x);
+console.log(x.name)
 console.log(foo);
 
 

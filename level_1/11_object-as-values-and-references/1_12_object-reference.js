@@ -4,7 +4,7 @@ function bar(ahmet) {
 }
 
 var z = 10;
-foo(z);
+//foo(z);
 
 var mehmet = { name: "hop" }
 bar(mehmet);

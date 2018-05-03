@@ -3,11 +3,17 @@
 // constructor	Returns the string's constructor function
 // length	Returns the length of a string
 // prototype	Allows you to add properties and methods to an object
+
 // charAt()	Returns the character at the specified index (position)
-// charCodeAt()	Returns the Unicode of the character at the specified index
+console.log("charAt()", "Mustafa".charAt(2) == "s");
+
+
 // concat()	Joins two or more strings, and returns a new joined strings
+console.log("concat()", "Mustafa".concat(" Ekim", " is 35 years old", ".") == "Mustafa Ekim is 35 years old.")
+
+
 // endsWith()	Checks whether a string ends with specified string/characters
-// fromCharCode()	Converts Unicode values to characters
+
 // includes()	Checks whether a string contains the specified string/characters
 // indexOf()	Returns the position of the first found occurrence of a specified value in a string
 // lastIndexOf()	Returns the position of the last found occurrence of a specified value in a string
@@ -28,3 +34,4 @@
 // toUpperCase()	Converts a string to uppercase letters
 // trim()	Removes whitespace from both ends of a string
 // valueOf()	Returns the primitive value of a String object
+

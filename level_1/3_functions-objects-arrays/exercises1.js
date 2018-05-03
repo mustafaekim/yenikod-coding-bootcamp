@@ -4,19 +4,39 @@ console.log("Mustafa".length == 7)
 
 /*
     => Write a function that checks two given numbers and return true if one of the number is 50 or if their sum is 50
-    function fn(number_1, number_2){
-        ..
-    }
+*/
+function fn(number_1, number_2) {
 
-    => Write a function that checks a given integer is within 20 of 100 or 400.
-    function fn(num){
-        ..
-    }
+}
+console.log("Ex1", fn(30, 20) == true);
+console.log("Ex1", fn(20, 30) == true);
+console.log("Ex1", fn(25, 25) == true);
+console.log("Ex1", fn(40, 10) == true);
+console.log("Ex1", fn(40, 20) == false);
 
+/*
+    => Write a function that checks a given integer is within 20 and 100 (inclusive) or 400.
+*/
+
+function fn(num) {
+
+}
+
+console.log("Ex2", fn(25) == true);
+console.log("Ex2", fn(100) == true);
+console.log("Ex2", fn(20) == true);
+console.log("Ex2", fn(19) == false);
+console.log("Ex2", fn(101) == false);
+console.log("Ex2", fn(400) == true);
+
+/*
     => Write a function that checks two given integers, if one is positive and one is negative, returns true
-    function fn(num1, num2){
-        ..
-    }
+*/
+function fn(num1, num2){
+    
+}
+
+/*
 
     => Write a function that returns whether the given number is between 4 and 40 (inclusive)
     function fn(num){
@@ -221,4 +241,10 @@ console.log("M" == "m".toUpperCase());
         ..
     }
     capitalize("I feel super today") should return "I Feel Super Today"
+*/
+
+/* 
+    Write a function that reverses every two characters 
+    function reverse_every_two(text) 
+    reverse_every_two("Istanbul") should return "sIatbnlu"
 */

@@ -1,6 +1,10 @@
 // Array built-in properties
 
 // concat() Returns a new array comprised of this array joined with other array(s) and/or value(s).
+console.log("concat()", [1,2].concat([3,4]) == [1,2,3,4])
+console.log([1,2].concat([3,4]));
+
+
 // every() Returns true if every element in this array satisfies the provided testing function.
 // filter() Creates a new array with all of the elements of this array for which the provided filtering function returns true.
 // forEach() Calls a function for each element in the array.

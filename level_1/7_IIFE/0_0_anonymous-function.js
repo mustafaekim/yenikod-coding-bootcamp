@@ -4,10 +4,9 @@ function hi(){
 }
 
 // function expression is assigned into a variable (name is optional)
-var hello = function hello(){
+var hello = function hello2(){
     return "hello";
 }
-
 
 console.log(hi);
 console.log(hello);

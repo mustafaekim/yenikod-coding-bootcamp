@@ -10,3 +10,5 @@ console.log(hi.length);
 hi.firstname = "Mustafa";
 hi.lastname = "Ekim"
 console.log(hi);
+
+// console.log(x, y, z);
